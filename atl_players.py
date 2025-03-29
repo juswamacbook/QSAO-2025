@@ -15,8 +15,29 @@ def extract_atl_players(file_path):
 
 # Example usage
 file_path = "QSAO CASECOMP PLAYERDATA.xlsx"  # Update with your file path
-atl_players_list = extract_atl_players(file_path)
+players_list = extract_atl_players(file_path)
 
-# Print sample output
-for player in atl_players_list:
+
+players_by_position = {}
+for player in players_list:
+    pos = player["Pos"]
+    if pos not in players_by_position:
+        players_by_position[pos] = []
+    players_by_position[pos].append(player)
+    
+    # Sort players by age (youngest to oldest
+players_by_age = sorted(players_list, key=lambda x: x["Age"])
+
+# print all atl players
+#for player in players_list:
+    #print(player)
+
+# print list of positions
+#for player in players_by_position:
+    #print(player)
+
+# print list by age
+for player in players_by_age:
     print(player)
+
+print (len(players_list))
